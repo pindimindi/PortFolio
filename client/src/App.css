@@ -1,0 +1,287 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html, body, #root {
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: #F2F2F2;
+  font-family: 'Assistant', sans-serif;
+}
+
+.main-grid {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.column {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.column-small {
+  width: 6%;
+}
+
+.column-med {
+  width: 94%;
+  padding: 1% 2%;
+}
+
+.column-lg {
+  width: 100%;
+  padding: 1% 2%;
+}
+
+/* .box {
+  width: 100%;
+  height: 95%;
+  padding: 2%;
+  background: white;
+  border-radius: 8px;
+  margin-top: 5px;
+} */
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+  background: #FFCF4E;
+  color: #bf9a3c;
+  border-radius: 0 3% 3% 0;
+}
+
+.icon-section {
+  display: flex;
+  flex-direction: column;
+  width: "100%";
+}
+
+.item {
+  margin: 35px auto;
+  height: 5%;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-text {
+  visibility: hidden;
+  background-color: white;
+  color: black;
+  text-align: center;
+  white-space: nowrap;
+  padding: 15px 80px;
+  border-radius: 5px;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.4);
+
+  /* Position the tooltip text */
+  position: absolute;
+  z-index: 1;
+  top: -5px;
+  left: 140%;
+
+  /* Fade in tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip .tooltip-text::after {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  right: 100%; /* To the left of the tooltip */
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent white transparent transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.form-holder {
+  width: 40%;
+  min-width: 310px;
+  margin: auto;
+  padding: 4%;
+  background: white;
+  border-radius: 8px;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+}
+
+.form-field {
+  width: 100%;
+  font-size: 1em;
+  margin: auto;
+}
+
+input {
+  width: 100%;
+  font-size: 1em;
+  margin: 5px 0;
+  padding: 0.7em;
+  background: #F2F2F2;
+  border-radius: 3px;
+}
+
+.title-lg {
+  text-align: center;
+  margin-bottom: 5%;
+  color: #FFCF4E;
+  font-size: 3em;
+}
+
+.no-border { 
+  border: none !important;
+}
+
+.button-holder {
+  height: 100%;
+  display: flex;
+  margin-top: 6%;
+}
+
+/* .button-oval {
+  padding: 15px 50px;
+  outline: none;
+  border: none;
+  border-radius: 25px;
+  text-align: center;
+  margin: auto;
+} */
+
+.button-yellow {
+  background: #FFCF4E;
+  color: black;
+}
+
+.message-holder {
+  width: 100%;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.link, .nav-link {
+  color: #bf9a3c;
+}
+
+.logo-link {
+  text-decoration: none;
+  color: black;
+}
+
+.alert {
+  text-align: center;
+  padding: 10px 0;
+  margin: 10px 0;
+}
+
+.alert-danger {
+  color: #C77F7E;
+  background: #FFE4E4;
+}
+
+.alert-success {
+  color: #79D19F;
+  background: #DBF8E8;
+}
+
+.alert-message {
+  color: #D6BF75;
+  background: #FFF7DF;
+}
+
+.logo {
+  height: 100px;
+  width: 200px;
+}
+
+.search-holder {	
+	float: right;
+	margin-right: 5px;
+	position: relative;
+}
+
+	.search-holder:before {
+	content: "";
+	position: absolute;
+	left: 10px;
+	top: 16px;
+	bottom: 0;
+	width: 20px;
+	height: 25px;
+	background: url(./images/search.svg) no-repeat;
+}
+
+	.search {
+	padding: 12px 36px;
+	width: 220px;
+	background-color: white;
+	border: none;
+  border-radius: 26px;
+  outline: none;
+}
+
+.sticky {
+    position: sticky;
+    top: 0;
+
+}
+
+.container {
+  height: 95%;
+  width: 100%;
+  margin-top: 2%;
+  padding: 10%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-radius: 10px;
+  background: white;
+}
+
+.card {
+  height: 200px;
+  width: 200px;
+  margin: 1%;
+}
+
+.card-image {
+  width: 100%;
+  height: 150px;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+}
+

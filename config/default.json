@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb+srv://milica123:milica123@devconnecter-repns.mongodb.net/test?retryWrites=true&w=majority",
+    "jwtsecret": "jdhkjfjfkljldjmasndhahjbegquw"
+}

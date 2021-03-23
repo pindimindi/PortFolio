@@ -3,10 +3,24 @@ import alert from './alert';
 import auth from './auth';
 import categories from './categories';
 import category from './category';
+import subcategories from './subcategories';
+import states from './states';
+import cities from './cities';
+import portfolio from './portfolio';
+import portfolios from './portfolios';
+import posts from './posts';
+import post from './post';
 
 export default combineReducers({
     alert,
     auth,
     category,
-    categories
+    categories,
+    subcategories,
+    states,
+    cities,
+    portfolio,
+    portfolios,
+    posts,
+    post
 });

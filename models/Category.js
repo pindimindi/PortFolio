@@ -10,26 +10,14 @@ const CategorySchema = new Schema({
         type: String,
         required: true
     },
-    subcategory: [
-        {
-            name: {
-                type: String,
-                required: true
-            },
-            coverPhoto: {
-                type: String,
-                required: true
-            },
-            users: {
-                type: Number,
-                default: 0
-            }
-        }
-    ],
+    subcategories: {
+        type: Number,
+        default: 0
+    },
     users: {
         type: Number,
         default: 0
     }
-})
+});
 
 module.exports = Category = mongoose.model('category', CategorySchema);

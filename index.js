@@ -23,6 +23,10 @@ app.use('/api/posts', require('./routes/api/posts'));
 app.use('/api/portfolios', require('./routes/api/portfolios'));
 app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/categories', require('./routes/api/categories'));
+app.use('/api/subCategories', require('./routes/api/subCategories'));
+app.use('/api/geo', require('./routes/api/geo'));
+app.use('/api/posts', require('./routes/api/posts'))
+
 
 
 // Server setup

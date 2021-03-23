@@ -3,7 +3,8 @@ import { GET_CATEGORIES, CLEAR_STATE } from './types';
 
 export const getCategories = () => async dispatch => {
     try {
-        const res = await axios.get('api/categories');
+        const res = await axios.get('/api/categories');
+        console.log('CATEGORIES', res.data)
 
         dispatch({
             type: GET_CATEGORIES,
@@ -15,11 +16,4 @@ export const getCategories = () => async dispatch => {
     }
 }
 
-
-export const clearState = () => dispatch => {
-
-    dispatch({
-        type: CLEAR_STATE
-    });
-}
 

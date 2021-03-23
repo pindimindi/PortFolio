@@ -1,23 +1,18 @@
 import styled from 'styled-components';
 
 
-export const FormInput = styled.input`
-  width: 100%;
-  margin: 5px 0;
-  padding: 0.7em;
-  background: #F2F2F2;
-  border-radius: 3px;
-  border: none;
-`
 export const FormField = styled.div`
-  width: 100%;
+  width: ${props => props.small ? '45%' : '100%'};
   font-size: 1em;
-  margin: auto;
+  margin: ${props => !props.small && 'auto'};
+  margin-bottom: 0.3em;
 `
 
 export const StyledForm = styled.form`
   display: flex;
-  flex-direction: column;
+  flex-direction: ${props => props.row ? 'row' : 'column'};
+  flex-wrap: wrap;
+  justify-content: space-between;
   padding: 1em;
   `
 
@@ -25,8 +20,9 @@ export const FormWrapper = styled.div`
   width: ${props => props.width ? props.width : '40%'};
   min-width: 310px;
   margin: auto;
-  padding: 4%;
+  padding: 1% 3%;
   background: white;
   border-radius: 8px;
-  text-align: center
+  text-align: center;
+  max-height:80vh;
   `

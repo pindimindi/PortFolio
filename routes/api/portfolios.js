@@ -2,15 +2,21 @@ const express = require('express');
 const router = express.Router();
 const auth = require('../../middleware/auth');
 const { check, validationResult } = require('express-validator');
+const { cloudinary } = require('../../config/cloudinary');
 
 const Portfolio = require('../../models/Porfolio');
 const User = require('../../models/User');
+const Category = require('../../models/Category');
+const updateUserCount = require('../../utils/updateNumberOfUsers');
 
 
 // Get loged in users portfolio
 router.get('/me', auth, async (req, res) => {
     try {
-        const myPortfolio = await Portfolio.findOne({ user: req.user.id }).populate('user', ['name']);
+        const myPortfolio = await Portfolio.findOne({ user: req.user.id })
+            .populate('user', ['name'])
+            .populate('category', ['name'])
+            .populate('subCategory', ['name']);
 
         if (!myPortfolio) {
             return res.status(400).json({ msg: 'There is no profile for this user' })
@@ -34,9 +40,12 @@ router.post('/', [auth, [
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
-        }
+        };
+
+        // console.log('req body', req.body)
 
         const {
+            profilePictureData,
             category,
             subCategory,
             location,
@@ -47,6 +56,18 @@ router.post('/', [auth, [
             instagram
         } = req.body;
 
+        let profilePicture;
+
+        if (profilePictureData) {
+            const uploadResponse = await cloudinary.uploader.upload(profilePictureData,
+                { upload_preset: 'profilePicture' }
+            );
+
+            profilePicture = uploadResponse.public_id;
+            // profilePicture = transformed;
+        };
+
+
         //Build Portfolio object 
         const portfoioObj = {
             user: req.user.id,
@@ -54,6 +75,7 @@ router.post('/', [auth, [
             subCategory,
             location
         };
+        if (profilePicture) portfoioObj.profilePicture = profilePicture;
         if (description) portfoioObj.description = description;
         if (website) portfoioObj.website = website;
 
@@ -67,7 +89,7 @@ router.post('/', [auth, [
             let portfolio = await Portfolio.findOne({ user: req.user.id });
 
             if (portfolio) {
-                //update
+                //if portfolio with the same category and subcategory exists already just update it
                 portfolio = await Portfolio.findOneAndUpdate(
                     { user: req.user.id },
                     { $set: portfoioObj },
@@ -89,6 +111,22 @@ router.post('/', [auth, [
         }
     });
 
+router.get('/category/:categoryId', async (req, res) => {
+    try {
+        const portfolios = await Portfolio.find({ category: req.params.categoryId }).populate('user', ['name']);
+
+        if (!portfolios) {
+            return res.status(400).json({ msg: 'No Portfolios for this category' })
+        }
+
+        res.json(portfolios);
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Server Error');
+    }
+});
+
 // Get all profiles
 router.get('/', async (req, res) => {
     try {
@@ -101,14 +139,14 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.get('/user/:user_id', async (req, res) => {
+router.get('/:porfolio_id', async (req, res) => {
     try {
-        const portfolio = await Portfolio.findOne({ user: req.params.user_id }).populate('user', ['name']);
+        const portfolio = await Portfolio.findOne({ _id: req.params.porfolio_id }).populate('user', ['name']);
 
         if (!portfolio) {
-            return res.status(400).json({ msg: 'Profile does not exist!' });
+            return res.status(400).json({ msg: 'Portfolio does not exist!' });
         }
-        res.json({ portfolio });
+        res.json(portfolio);
 
     } catch (err) {
         console.error(err.message);
@@ -116,18 +154,26 @@ router.get('/user/:user_id', async (req, res) => {
     }
 });
 
-// Delete portfolio, user and posts
-router.delete('/user/:user_id', auth, async (req, res) => {
+//delete portfolio
+router.delete('/:porfolio_id', async (req, res) => {
     try {
-        await Portfolio.findOneAndRemove({ user: req.user.id });
-        await User.findOneAndRemove({ _id: req.user.id });
+        const portfolio = await Portfolio.findOne({ _id: req.params.porfolio_id });
+        const category = await Category.findOne({ _id: portfolio.category });
 
-        res.json({ msg: 'User deleted!' })
+        const newCategoryUserCount = category.users - 1;
+
+        await Portfolio.deleteOne({ _id: req.params.porfolio_id });
+
+        await updateUserCount(newCategoryUserCount, Category, category.name);
+
+        res.json({ msg: 'User deleted!' });
+
     } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Server Error')
+        console.error(err);
+        res.status(500).send(err.message);
     }
-})
+
+});
 
 
 

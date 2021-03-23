@@ -11,3 +11,8 @@ export { default as Home } from './Home';
 export { default as Alert } from './Alert';
 export { default as Navbar } from './Navbar';
 export { default as CategoryForm } from './CategoryForm';
+export { default as PortfolioForm } from './PortfolioForm';
+export { default as Portfolio } from './Portfolio';
+export { default as PostUploader } from './PostUploader';
+export { default as PortfoliosList } from './PortfoliosList';
+export { default as Filters } from './Filters';

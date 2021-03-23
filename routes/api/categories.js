@@ -48,15 +48,12 @@ router.post('/',
 
             category = new Category({ name, coverPhoto: url });
             await category.save();
-            console.log('CATEGORY', category)
             res.json({ category });
 
         } catch (err) {
             console.error(err.message);
             res.status(500).send('Server Error');
         }
-
-
     })
 
 

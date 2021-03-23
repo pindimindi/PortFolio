@@ -1,61 +1,89 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { logout } from '../actions/auth';
+import styled from 'styled-components';
+
+import { logout } from 'actions/auth';
+import Link from './styled/Link';
+import Tooltip from './styled/Tooltip';
+
+const StyledSydebar = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 96vh;
+    width: 88%;
+    background: #FFCF4E;
+    color: #bf9a3c;
+    /* border-radius: 0 5% 5% 0; */
+    border-radius: 12px;
+    margin: auto;
+    margin-top: 10px;
+
+    >div {
+        display: flex;
+        flex-direction: column;
+        width: "100%";
+
+        >div {
+            margin: 35px auto;
+            height: 5%;
+        }
+    }
+`;
 
 const Sidebar = (props) => {
     const isLoggedIn = props.auth.isAuthenticated ? true : false;
     const logout = props.logout;
 
     const loginButton = (
-        <div className="tooltip">
-            <span className="tooltip-text">Log In</span>
-            <Link to="/login" className="nav-link">
+        <Tooltip>
+            <span>Log In</span>
+            <Link to="/login">
                 <i className="fas fa-sign-in-alt fa-2x"></i>
             </Link>
-        </div>
+        </Tooltip>
     );
     const logoutButton = (
-        <div className="tooltip">
-            <span className="tooltip-text">Log Out</span>
+        <Tooltip>
+            <span>Log Out</span>
             <i onClick={logout} className="fas fa-sign-out-alt fa-2x"></i>
-        </div>
+        </Tooltip>
     )
     return (
-        <div className="sidebar">
-            <div className="icon-section">
-                <div className="item">
-                    <div className="tooltip">
-                        <span className="tooltip-text">Home</span>
-                        <Link to="/" className="nav-link">
+        <StyledSydebar>
+            <div>
+                <div>
+                    <Tooltip>
+                        <span>Home</span>
+                        <Link to="/">
                             <i className="fas fa-home fa-2x"></i>
                         </Link>
-                    </div>
+                    </Tooltip>
                 </div>
-                <div className="item">
-                    <div className="tooltip">
-                        <span className="tooltip-text">Profile</span>
-                        <Link to="/profile" className="nav-link">
+                <div>
+                    <Tooltip>
+                        <span>Profile</span>
+                        <Link to="/portfolio">
                             <i className="fas fa-user fa-2x"></i>
                         </Link>
-                    </div>
+                    </Tooltip>
                 </div>
-                <div className='item'>
-                    <div className="tooltip">
-                        <span className="tooltip-text">Settings</span>
-                        <Link to="/settings" className="nav-link">
+                <div>
+                    <Tooltip>
+                        <span>Settings</span>
+                        <Link to="/settings">
                             <i className="fas fa-cog fa-2x"></i>
                         </Link>
-                    </div>
+                    </Tooltip>
                 </div>
             </div>
-            <div className='icon-section'>
-                <div className='item'>
+            <div>
+                <div>
                     {isLoggedIn ? logoutButton : loginButton}
                 </div>
             </div>
-        </div>
+        </StyledSydebar>
     )
 };
 

@@ -1,12 +1,12 @@
-*,
+/* *,
 *::after,
 *::before {
   margin: 0;
   padding: 0;
   box-sizing: inherit;
-}
+} */
 
-html, body, #root {
+/* html, body, #root {
   box-sizing: border-box;
   height: 100%;
   width: 100%;
@@ -14,34 +14,34 @@ html, body, #root {
   padding: 0;
   background: #F2F2F2;
   font-family: 'Assistant', sans-serif;
-}
+} */
 
-.main-grid {
+/* .main-grid {
   height: 100%;
   width: 100%;
   display: flex;
   flex-direction: row;
-}
+} */
 
-.column {
+/* .column {
   height: 100%;
   display: flex;
   flex-direction: column;
 }
 
 .column-small {
-  width: 6%;
+  width: 8%;
 }
 
 .column-med {
-  width: 94%;
-  padding: 1% 2%;
+  width: 92%;
+  padding: 1%;
 }
 
 .column-lg {
   width: 100%;
   padding: 1% 2%;
-}
+} */
 
 /* .box {
   width: 100%;
@@ -52,7 +52,7 @@ html, body, #root {
   margin-top: 5px;
 } */
 
-.sidebar {
+/* .sidebar {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -72,14 +72,14 @@ html, body, #root {
 .item {
   margin: 35px auto;
   height: 5%;
-}
+} */
 
-.tooltip {
+/* .tooltip {
   position: relative;
   display: inline-block;
-}
+} */
 
-.tooltip-text {
+/* .tooltip-text {
   visibility: hidden;
   background-color: white;
   color: black;
@@ -87,43 +87,42 @@ html, body, #root {
   white-space: nowrap;
   padding: 15px 80px;
   border-radius: 5px;
-  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.4);
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.4); */
 
   /* Position the tooltip text */
-  position: absolute;
+  /* position: absolute;
   z-index: 1;
   top: -5px;
-  left: 140%;
+  left: 140%; */
 
   /* Fade in tooltip */
-  opacity: 0;
-  transition: opacity 0.3s;
-}
+  /* opacity: 0;
+  transition: opacity 0.3s; */
+/* } */
 
-.tooltip .tooltip-text::after {
+/* .tooltip .tooltip-text::after {
   content: " ";
   position: absolute;
   top: 50%;
-  right: 100%; /* To the left of the tooltip */
+  right: 100%;
   margin-top: -5px;
   border-width: 5px;
   border-style: solid;
   border-color: transparent white transparent transparent;
 }
 
-/* Show the tooltip text when you mouse over the tooltip container */
 .tooltip:hover .tooltip-text {
   visibility: visible;
   opacity: 1;
-}
+} */
 
-.navbar {
+/* .navbar {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-}
+} */
 
-.form-holder {
+/* .form-holder {
   width: 40%;
   min-width: 310px;
   margin: auto;
@@ -142,9 +141,9 @@ html, body, #root {
   width: 100%;
   font-size: 1em;
   margin: auto;
-}
+} */
 
-input {
+/* input {
   width: 100%;
   font-size: 1em;
   margin: 5px 0;
@@ -158,17 +157,17 @@ input {
   margin-bottom: 5%;
   color: #FFCF4E;
   font-size: 3em;
-}
+} */
 
-.no-border { 
+/* .no-border { 
   border: none !important;
-}
+} */
 
-.button-holder {
+/* .button-holder {
   height: 100%;
   display: flex;
   margin-top: 6%;
-}
+} */
 
 /* .button-oval {
   padding: 15px 50px;
@@ -179,7 +178,7 @@ input {
   margin: auto;
 } */
 
-.button-yellow {
+/* .button-yellow {
   background: #FFCF4E;
   color: black;
 }
@@ -188,16 +187,16 @@ input {
   width: 100%;
   text-align: center;
   margin-top: 40px;
-}
+} */
 
-.link, .nav-link {
+/* .link, .nav-link {
   color: #bf9a3c;
-}
-
+} */
+/* 
 .logo-link {
   text-decoration: none;
   color: black;
-}
+} */
 
 .alert {
   text-align: center;
@@ -220,12 +219,12 @@ input {
   background: #FFF7DF;
 }
 
-.logo {
+/* .logo {
   height: 100px;
   width: 200px;
-}
+} */
 
-.search-holder {	
+/* .search-holder {	
 	float: right;
 	margin-right: 5px;
 	position: relative;
@@ -249,15 +248,15 @@ input {
 	border: none;
   border-radius: 26px;
   outline: none;
-}
+} */
 
-.sticky {
+/* .sticky {
     position: sticky;
     top: 0;
 
-}
+} */
 
-.container {
+/* .container {
   height: 95%;
   width: 100%;
   margin-top: 2%;
@@ -267,21 +266,21 @@ input {
   justify-content: space-between;
   border-radius: 10px;
   background: white;
-}
-
+} */
+/* 
 .card {
   height: 200px;
   width: 200px;
   margin: 1%;
-}
+} */
 
-.card-image {
+/* .card-image {
   width: 100%;
   height: 150px;
-}
+} */
 
-.image {
+/* .image {
   width: 100%;
   height: 100%;
-}
+} */
 

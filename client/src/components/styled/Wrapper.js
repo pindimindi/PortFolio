@@ -1,24 +1,22 @@
-import React from 'react';
-import styled from 'styled-components';
-import { css } from 'styled-components';
+import styled, { css } from 'styled-components';
 
-const StyledWrapper = styled.section`
-  height: 95%;
-  width: 100%;
-  margin-top: 2%;
+const Wrapper = styled.div`
+  display:flex;
+  flex-direction: ${props => props.direction || 'column'};
+  height: ${props => props.height || 'auto'};
+  min-height: 88vh;
+  width: ${props => props.width || '100%'};
+  padding: 5px;
+  margin: auto;
+  margin-top: 0.5%;
   border-radius: 10px;
-  background: white;
-  ${({ gridView }) =>
-        gridView &&
-        css`display: flex;
-        flex - direction: row;
-        justify - content: space - between;
-        padding: 10%;`}
+  background: ${props => props.color || '#FAFAFA'};
+
+    @media (max-width: 375px) {
+    width: 100%;
+  }
+
 `
 // height needs to be auto and min height should be 95%
-
-const Wrapper = ({ gridView, children }) => {
-    return <StyledWrapper gridView={gridView}>{children}</StyledWrapper>
-}
 
 export default Wrapper;

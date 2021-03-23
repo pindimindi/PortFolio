@@ -29,6 +29,8 @@
     "nodemon": "^2.0.3"
   },
   "devDependencies": {
-    "http-proxy-middleware": "^1.0.6"
+    "axios-mock-adapter": "^1.19.0",
+    "http-proxy-middleware": "^1.0.6",
+    "jest-mock-axios": "^4.2.1"
   }
 }

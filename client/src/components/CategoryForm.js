@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { createNewCategory, startLoading } from '../actions/category';
+import { createNewCategory, startLoading } from 'actions/category';
 import Button from './styled/Button';
 import Title from './styled/Title';
 import Wrapper from './styled/Wrapper';
-import { FormWrapper, StyledForm, FormField, FormInput } from './styled/Form';
+import { FormWrapper, StyledForm, FormField } from './styled/Form';
+import Input from './styled/Input';
+import getDataUrl from '../utils/getDataUrl';
 
 
 
@@ -32,20 +34,25 @@ const CategoryForm = props => {
         setFileInputState('')
     }
 
-    const previewFile = file => {
+    const previewFile = async file => {
+        // const dataUrl = await getDataUrl(file);
+        // console.log("data url", dataUrl)
+        // setCoverPhoto(dataUrl);
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onloadend = () => {
             setCoverPhoto(reader.result);
         }
     }
+
+
     return (
-        <Wrapper>
+        <Wrapper color='white'>
             <FormWrapper width='80%'>
                 <Title>Create New Category</Title>
-                <StyledForm onSubmit={handleSubmit}>
+                <StyledForm onSubmit={handleSubmit} data-testid='categoryForm'>
                     <FormField>
-                        <FormInput
+                        <Input
                             placeholder='Category name'
                             type='text'
                             name='name'
@@ -55,7 +62,7 @@ const CategoryForm = props => {
                         />
                     </FormField>
                     <FormField>
-                        <FormInput
+                        <Input
                             type="file"
                             name="image"
                             onChange={handleChange}
@@ -64,11 +71,11 @@ const CategoryForm = props => {
                             value={fileInputState}
                         />
                     </FormField>
-                    <Button type='submit' marginTop='3%'>{props.loading ? 'UPLOADING...' : 'SAVE'}</Button>
+                    <Button type='submit' marginTop='3%' margin='auto'>{props.loading ? 'UPLOADING...' : 'SAVE'}</Button>
                 </StyledForm>
                 {coverPhoto && (
-                    <div>
-                        <img
+                    <div data-testid='preview'>
+                        <video
                             src={coverPhoto}
                             alt="chosen"
                             style={{ height: '200px' }}
@@ -77,43 +84,6 @@ const CategoryForm = props => {
                 )}
             </FormWrapper>
         </Wrapper>
-
-        // <div className='form-holder'>
-        //     <h2 className='title-lg'>Create New Category</h2>
-        //     <form onSubmit={handleSubmit} className='auth-form'>
-        //         <div className='form-field'>
-        //             <input className='no-border'
-        //                 placeholder='Category name'
-        //                 type='text'
-        //                 name='name'
-        //                 value={name}
-        //                 onChange={handleChange}
-        //                 required />
-        //         </div>
-        //         <div className='form-field'>
-        //             <input
-        //                 type="file"
-        //                 name="image"
-        //                 onChange={handleChange}
-        //                 placeholder="Upload an image"
-        //                 required
-        //                 value={fileInputState}
-        //             />
-        //         </div>
-        //         <div className='button-holder'>
-        //             <button type='submit' className='button-oval button-yellow'>{props.loading ? '...LOADING' : 'CREATE'}</button>
-        //         </div>
-        //         {coverPhoto && (
-        //             <div>
-        //                 <img
-        //                     src={coverPhoto}
-        //                     alt="chosen"
-        //                     style={{ height: '200px' }}
-        //                 />
-        //             </div>
-        //         )}
-        //     </form>
-        // </div>
     )
 }
 

@@ -13,7 +13,7 @@ module.exports = async function (req, res, next) {
         const { data } = await axios.get('https://www.universal-tutorial.com/api/getaccesstoken', config);
 
         if (data.auth_token) {
-            console.log("TOKEN", data.auth_token);
+            console.log("TOKEN from function", data.auth_token);
             process.env['GEO_API_AUTH_TOKEN'] = data.auth_token;
         }
 

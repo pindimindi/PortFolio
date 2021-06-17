@@ -6,11 +6,11 @@ import {
     GET_PORTFOLIOS_ERROR, FILTER_PORTFOLIOS
 } from './types';
 import { setAlert } from './alert';
+import portfolios from 'reducers/portfolios';
 
-export const getPortfolios = categoryId => async dispatch => {
+export const getPortfolios = (categoryId, userId) => async dispatch => {
     try {
-        const res = await axios.get(`/api/portfolios/category/${categoryId}`);
-        console.log('portfolios response', res)
+        const res = await axios.post(`/api/portfolios/category/${categoryId}`, { userId });
 
         dispatch({
             type: GET_PORTFOLIOS,
@@ -53,7 +53,6 @@ export const createPortfolio = (data) => async dispatch => {
 export const getMyPortfolio = () => async dispatch => {
     try {
         const res = await axios.get('/api/portfolios/me');
-        console.log('portfolio response', res)
 
         dispatch({
             type: GET_MY_PORTFOLIO,
@@ -72,7 +71,6 @@ export const getMyPortfolio = () => async dispatch => {
 export const getPortfolio = portfolioId => async dispatch => {
     try {
         const res = await axios.get(`/api/portfolios/${portfolioId}`);
-        console.log('PORTFOLIO RESPONSE', res.data)
 
         dispatch({
             type: GET_PORTFOLIO,
@@ -84,9 +82,27 @@ export const getPortfolio = portfolioId => async dispatch => {
     }
 };
 
-export const filterPortfolios = (filterName, filterValue, filterType) => dispatch => {
-    dispatch({
-        type: FILTER_PORTFOLIOS,
-        payload: { filterName, filterValue, filterType }
-    });
+
+export const filterPortfolios = (portfolios, subCategoryFilter, stateFilter, cityFilter) => dispatch => {
+    if (subCategoryFilter || stateFilter || cityFilter) {
+        const filtered = portfolios.filter(portfolio => {
+            return (
+                (!subCategoryFilter || portfolio.subCategory === subCategoryFilter) &&
+                (!stateFilter || portfolio.location.state === stateFilter) &&
+                (!cityFilter || portfolio.location.city === cityFilter)
+            )
+        });
+        // console.log('filtered from action', filtered)
+
+        dispatch({
+            type: FILTER_PORTFOLIOS,
+            payload: filtered
+        });
+
+    } else {
+        dispatch({
+            type: FILTER_PORTFOLIOS,
+            payload: portfolios
+        });
+    }
 }

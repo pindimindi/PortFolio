@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { createPost } from '../actions/posts';
@@ -71,6 +71,12 @@ const Uploader = ({ post, loading, createPost, startLoading, match }) => {
     )
 
 };
+
+Uploader.propTypes = {
+    loading: PropTypes.bool.isRequired,
+    createPost: PropTypes.func.isRequired,
+    startLoading: PropTypes.func.isRequired
+}
 
 const mapStateToProps = state => ({
     post: state.post.post,

@@ -22,6 +22,8 @@ const sizeStyles = ({ small, medium }) => {
 
 const Column = styled.div`
     width: 100%;
+    /* display: flex;
+    margin: 0 auto; */
     ${({ sticky }) =>
         sticky && css`
         position: -webkit-sticky;

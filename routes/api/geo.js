@@ -2,10 +2,6 @@ const express = require('express');
 const router = express.Router();
 const axios = require('axios');
 
-const getStates = require('../../utils/getStates');
-const updateToken = require('../../utils/updateGeoApiToken');
-
-
 const config = {
     headers: {
         "Authorization": 'Bearer ' + process.env.GEO_API_AUTH_TOKEN,
@@ -16,8 +12,8 @@ const config = {
 router.post('/states', async (req, res) => {
     try {
         const { country } = req.body;
-
         const statesreq = await axios.get(`https://www.universal-tutorial.com/api/states/${country}`, config);
+        // const statesreq = getStates(req, res);
         const states = statesreq.data;
 
         res.json(states);
@@ -25,16 +21,7 @@ router.post('/states', async (req, res) => {
     } catch (err) {
         console.error(err);
         console.log("STAES ERROR CATCH", err);
-        res.status(500).send(err.message)
-
     }
-    // let stateresponse = getStates(req, res);
-    // if (!stateresponse.data) {
-    //     console.log("it gets to if block");
-    //     updateToken();
-    //     stateresponse = getStates(req, res);
-    // }
-    // res.json(stateresponse.data);
 
 });
 

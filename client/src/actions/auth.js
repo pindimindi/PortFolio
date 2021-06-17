@@ -36,7 +36,6 @@ export const register = ({ name, email, password }) => async dispatch => {
 export const login = (email, password) => async dispatch => {
     try {
         const res = await axios.post('/api/auth', { email, password });
-        console.log('login response', res)
 
         dispatch({
             type: LOGIN_SUCCESS,
@@ -62,9 +61,7 @@ export const logout = () => dispatch => {
 }
 
 export const loadUser = () => async dispatch => {
-    console.log('load user gets called')
     if (localStorage.token) {
-        console.log('there is local storage token')
         setAuthToken(localStorage.token);
     }
 

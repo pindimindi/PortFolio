@@ -53,7 +53,6 @@ const Portfolio = ({ portfolio, getMyPortfolio,
     const [currentPost, setCurrentPost] = useState(null);
 
     useEffect(() => {
-        console.log('match params', match.params)
         location.pathname === '/portfolio/me' ?
             getMyPortfolio() : getPortfolio(match.params.portfolioId);
     }, []);
@@ -69,8 +68,6 @@ const Portfolio = ({ portfolio, getMyPortfolio,
 
     const isMe = portfolio && user && portfolio.user._id === user._id;
 
-    // console.log('posts', posts);
-    // console.log('current post', currentPost)
     return (
         <Wrapper width='60%'>
             <Modal show={show} onClose={e => setShow(false)}>
@@ -94,7 +91,6 @@ const Portfolio = ({ portfolio, getMyPortfolio,
                             <Placeholder
                                 type='predominant'
                             />
-                            {/* <Transformation gravity='auto' crop="fill" quality='90' /> */}
                         </CloudImage>
                     </Image>
                 }

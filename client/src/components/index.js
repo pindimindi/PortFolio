@@ -15,4 +15,6 @@ export { default as PortfolioForm } from './PortfolioForm';
 export { default as Portfolio } from './Portfolio';
 export { default as PostUploader } from './PostUploader';
 export { default as PortfoliosList } from './PortfoliosList';
+export { default as Portfolios } from './Portfolios';
 export { default as Filters } from './Filters';
+export { default as SubcategoriesFilter } from './SubcategoryFilter';

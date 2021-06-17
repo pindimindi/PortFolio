@@ -111,9 +111,15 @@ router.post('/', [auth, [
         }
     });
 
-router.get('/category/:categoryId', async (req, res) => {
+router.post('/category/:categoryId', async (req, res) => {
     try {
-        const portfolios = await Portfolio.find({ category: req.params.categoryId }).populate('user', ['name']);
+        const userId = req.body.userId;
+
+        const portfolios = await Portfolio.find({
+            $and: [
+                { user: { $ne: userId } },
+                { category: req.params.categoryId }]
+        }).populate('user', ['name']);
 
         if (!portfolios) {
             return res.status(400).json({ msg: 'No Portfolios for this category' })

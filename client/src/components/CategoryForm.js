@@ -35,9 +35,6 @@ const CategoryForm = props => {
     }
 
     const previewFile = async file => {
-        // const dataUrl = await getDataUrl(file);
-        // console.log("data url", dataUrl)
-        // setCoverPhoto(dataUrl);
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onloadend = () => {

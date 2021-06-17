@@ -9,7 +9,6 @@ import Container from './styled/Container';
 import CardContent from './styled/CardContent';
 import Grid from './styled/Grid';
 import Wrapper from './styled/Wrapper';
-import category from 'reducers/category';
 import SubTitle from './styled/SubTitle';
 import Meta from './styled/Meta';
 
@@ -28,7 +27,7 @@ const Home = (props) => {
 
     return (
         <Wrapper direction='column'>
-            <Grid width='85%'>
+            <Grid responsive width='85%'>
                 {
                     props.categories[0] ? props.categories.map(category => (
                         <Card secondary onClick={() => goToPortfolios(category._id)} key={category._id}>

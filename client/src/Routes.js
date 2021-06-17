@@ -5,7 +5,7 @@ import {
     Register, Home, Login, Sidebar,
     Alert, Navbar, CategoryForm,
     PortfolioForm, Portfolio,
-    PortfoliosList, PostUploader
+    Portfolios, PostUploader
 } from 'components';
 import Column from 'components/styled/Column';
 
@@ -22,11 +22,11 @@ const Routes = (props) => {
 
     let displaySidebar = props.location.pathname !== '/register' && props.location.pathname !== '/login';
     return (
-        <Grid>
-            <Column sticky>
+        <Grid className='routesGrid'>
+            <Column sticky className='navbar'>
                 <Navbar />
             </Column>
-            <Column>
+            <Column className='contentColumn'>
                 <Alert />
                 <Switch>
                     <Route exact path='/' component={Home} />
@@ -35,7 +35,7 @@ const Routes = (props) => {
                     <Route exact path='/createCategory' component={CategoryForm} />
                     <Route exact path='/createPortfolio' component={PortfolioForm} />
                     <Route exact path='/portfolio/me' component={p => (<Portfolio {...props}/>)} />
-                    <Route exact path='/portfolios/category/:categoryId' component={PortfoliosList} />
+                    <Route exact path='/portfolios/category/:categoryId' component={Portfolios} />
                     <Route exact path='/uploadMedia/:portfolioId' component={PostUploader} />
                     <Route exact path='/portfolio/:portfolioId' component={Portfolio} />
                 </Switch>
